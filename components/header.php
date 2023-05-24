@@ -13,7 +13,7 @@
     <div class="navbar bg-base-100 shadow-xl">
         <div class="flex-1">
             <a class="btn btn-ghost normal-case text-xl">
-                Harsha Web
+                Ludo King
             </a>
         </div>
         <div class="flex-none">

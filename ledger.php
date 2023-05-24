@@ -3,7 +3,7 @@
 include './components/header.php';
 ?>
 
-<div class="w-full h-full justify-center items-center flex mt-5">
+<div class="w-full h-full justify-center items-center flex mt-10">
 
     <div class="w-full max-w-[90%] p-1 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-600 dark:border-gray-700">
         <form class="space-y-6" action="#">
