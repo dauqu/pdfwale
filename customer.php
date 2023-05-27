@@ -1,11 +1,24 @@
 <?php
 
 include './components/header.php';
+
+$servername = "localhost";
+$username = "pdf";
+$password = "7388139606";
+$dbname = "pdf";
+
+// Create a connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// SQL query to retrieve data
+$sql = "SELECT * FROM customer";
+$result = $conn->query($sql);
+
 ?>
 
 <div class="w-full h-full justify-center items-center flex mt-[20vh]">
     <div class="w-full max-w-[40%] p-4 bg-white border rounded-lg border-gray-200 shadow sm:p-6 md:p-8 dark:bg-gray-600 dark:border-gray-700">
-        <form class="space-y-6" action="./backend/customer.php">
+        <form class="space-y-6" action="./backend/customer.php" method="get">
 
             <div class="flex justify-between items-end w-full">
                 <div class="w-full mr-5">
@@ -31,78 +44,62 @@ include './components/header.php';
             </div>
             <div class="box-content h-[200px] w-90 border-2 border-gray-100 bg-gray-100">
                 <div class="overflow-x-auto rounded-none">
-                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                    <!-- <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                  
-                            <tr>
-                                <th></th>
-                                <th>Name</th>
-                                <th>Reference</th>
-                                <th>Mobile Number</th>
-                            </tr>
-                        </thead> -->
+                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                        <tr>
-                            <th scope="col" class="p-4">
-                                <div class="flex items-center">
+                            <tr>
+                                <th scope="col" class="p-4">
+                                    <div class="flex items-center">
 
-                                </div>
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Table
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Date
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Details
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Team 1
-                            </th>
-                        </tr>
-                    </thead>
+                                    </div>
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Table
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Date
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Details
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Team 1
+                                </th>
+                            </tr>
+                        </thead>
                         <tbody class="rounded-none">
-                            <!-- row 1 -->
-                            <!-- <tr>
-                                <th>1</th>
-                                <td>Rishi</td>
-                                <td>Harsh</td>
-                                <td>9999999999</td>
-                            </tr> -->
-                            <!-- row 2 -->
-                            <!-- <tr>
-                                <th>2</th>
-                                <td>Rishi</td>
-                                <td>Harsh</td>
-                                <td>9999999999</td>
-                            </tr> -->
-                            <!-- row 3 -->
-                            <!-- <tr>
-                                <th>3</th>
-                                <td>Rishi</td>
-                                <td>Harsh</td>
-                                <td>9999999999</td>
-                            </tr> -->
-                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                    <td class="w-4 p-4">
-                                        <div class="flex items-center">
+                            <?php
+                            if ($result->num_rows > 0) {
+                                $serialNumber = 1;
+                                // Output data of each row
+                                while ($row = $result->fetch_assoc()) {
+                            ?>
+                                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                        <td class="w-4 p-4">
+                                            <div class="flex items-center">
 
-                                        </div>
-                                    </td>
-                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        <!-- <?php echo $serialNumber; ?> --> 1
-                                    </th>
-                                    <td class="px-6 py-4">
-                                        <!-- <?php echo $row["date"]; ?> --> Rishi
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <!-- <?php echo $row["details"]; ?> --> Harsh
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <!-- <?php echo $row["team_1"]; ?> --> 7388139606
-                                    </td>
-                                </tr>
+                                            </div>
+                                        </td>
+                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            <?php echo $serialNumber; ?>
+                                        </th>
+                                        <td class="px-6 py-4">
+                                            <?php echo $row["name"]; ?>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <?php echo $row["reference"]; ?>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <?php echo $row["mobile"]; ?>
+                                        </td>
+                                    </tr>
+                                    <?php $serialNumber++;  ?>
+                            <?php
+                                }
+                            } else {
+                                echo "No data found";
+                            }
+                            ?>
+
                         </tbody>
                     </table>
                 </div>
