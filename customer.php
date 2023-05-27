@@ -12,7 +12,7 @@ include './components/header.php';
                     <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NAME</label>
                     <input type="name" name="name" id="name" class="uppercase bg-gray-50 border border-gray-300 text-gray-900 text-sm outline-none focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
                 </div>
-                <button class="w-[150px] text-black btn-sm bg-white border-white-200 shadow h-10 dark:bg-white-600 pl-2 pr-2 dark:border-white-700 ">Addittion</button>
+                <button class="w-[150px] text-black btn-sm bg-white border-white-200 shadow h-10 dark:bg-white-600 pl-2 pr-2 dark:border-white-700" type="submit">Addittion</button>
             </div>
             <div class="flex justify-between items-end">
                 <div class="w-full mr-5">
