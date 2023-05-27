@@ -26,7 +26,7 @@ $result = $conn->query($sql);
                         <tr>
                             <th scope="col" class="p-4">
                                 <div class="flex items-center">
-
+                                <input type="checkbox" class="checkbox" />
                                 </div>
                             </th>
                             <th scope="col" class="px-6 py-3">

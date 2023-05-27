@@ -9,40 +9,40 @@ include './components/header.php';
         <form class="space-y-6" action="#">
 
             <div class="flex justify-between">
-                <div>
+                <div class="w-full mr-2">
                     <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Opening
                         Bal.</label>
                     <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm input-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
                 </div>
-                <div>
+                <div class="w-full mr-2">
                     <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Party</label>
                     <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm input-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
                 </div>
-                <div>
-                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">---</label>
-                    <button class="btn rounded-none btn-sm btn-wide btn-primary">
+                <div class="mr-2">
+                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Full Leader</label>
+                    <button class="btn rounded-none btn-sm btn-wide btn-primary btn-disabled">
                         Full Leader
                     </button>
                 </div>
-                <div>
-                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">---</label>
+                <div class="mr-2">
+                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Clear Data</label>
                     <button class="btn rounded-none btn-sm btn-wide btn-primary">
-                        Crear Data
+                    Clear Data
                     </button>
                 </div>
-                <div>
-                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">---</label>
-                    <button class="btn rounded-none btn-sm btn-wide btn-primary">
+                <div class="mr-2">
+                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Taily</label>
+                    <button class="btn rounded-none btn-sm btn-primary btn-disabled">
                         Taily
                     </button>
                 </div>
-                <div>
-                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">---</label>
-                    <button class="btn rounded-none btn-sm btn-wide btn-primary">
+                <div class="mr-2">
+                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">MF</label>
+                    <button class="btn rounded-none btn-sm btn-primary btn-disabled">
                         MF
                     </button>
                 </div>
-                <div>
+                <div class="w-full mr-2">
                     <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Closing Bal.</label>
                     <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm input-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
                 </div>
@@ -267,91 +267,32 @@ include './components/header.php';
 
 
                         </tr>
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                            <td class="w-4 p-4">
-                                <div class="flex items-center">
-
-                                </div>
-                            </td>
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                Magic Keyboard
-                            </th>
-                            <td class="px-6 py-4">
-                                Black
-                            </td>
-                            <td class="px-6 py-4">
-                                Accessories
-                            </td>
-                            <td class="px-6 py-4">
-                                Yes
-                            </td>
-                            <td class="px-6 py-4">
-                                Yes
-                            </td>
-                            <td class="px-6 py-4">
-                                $99
-                            </td>
-                            >
-
-                        </tr>
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                            <td class="w-4 p-4">
-                                <div class="flex items-center">
-
-                                </div>
-                            </td>
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                Apple TV 4K
-                            </th>
-                            <td class="px-6 py-4">
-                                Black
-                            </td>
-                            <td class="px-6 py-4">
-                                TV
-                            </td>
-                            <td class="px-6 py-4">
-                                Yes
-                            </td>
-                            <td class="px-6 py-4">
-                                No
-                            </td>
-                            <td class="px-6 py-4">
-                                $179
-                            </td>
-
-
-                        </tr>
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                            <td class="w-4 p-4">
-                                <div class="flex items-center">
-
-                                </div>
-                            </td>
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                AirTag
-                            </th>
-                            <td class="px-6 py-4">
-                                Silver
-                            </td>
-                            <td class="px-6 py-4">
-                                Accessories
-                            </td>
-                            <td class="px-6 py-4">
-                                Yes
-                            </td>
-                            <td class="px-6 py-4">
-                                No
-                            </td>
-                            <td class="px-6 py-4">
-                                $29
-                            </td>
-
-
-                        </tr>
+                       
                     </tbody>
                 </table>
             </div>
 
+            <div class="flex justify-between">
+                <div class="w-full mr-2">
+                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Second Party</label>
+                    <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm input-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
+                </div>
+                <div class="w-full mr-2">
+                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Amount</label>
+                    <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm input-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
+                </div>
+                <div class="w-full mr-2">
+                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Narration</label>
+                    <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm input-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
+                </div>
+                <div>
+                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Save Data</label>
+                    <button class="btn rounded-none btn-sm btn-wide btn-success btn-active">
+                        Submit
+                    </button>
+                </div>
+
+            </div>
 
         </form>
     </div>
