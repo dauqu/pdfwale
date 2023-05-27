@@ -97,7 +97,7 @@ $result = $conn->query($sql);
         </form>
 
         <div class="justify-between mt-5">
-            <form action="./backend/database.php" method="get">
+            <form action="./backend/game.php" method="get">
                 <div class="flex justify-between">
                     <div class="w-full">
                         <label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date</label>
