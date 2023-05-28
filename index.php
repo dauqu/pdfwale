@@ -2,12 +2,12 @@
 include './components/header.php';
 ?>
 <div class="p-5">
-  <form id="task-form">
+  <form id="task-form" class="p-5">
     <input type="text" id="task-input" class="input input-sm rounded input-sm input-bordered" placeholder="Enter task">
     <button type="submit" class="btn btn-active rounded btn-sm btn-success ml-5">Add Task</button>
   </form>
 
-  <li id="task-list" class="btn btn-sm"></li>
+  <ul id="task-list" class="p-2 w-full justify-between"></ul>
 </div>
 <script>
   // Open the IndexedDB database
@@ -85,6 +85,7 @@ include './components/header.php';
 
         const deleteButton = document.createElement('button');
         deleteButton.textContent = 'Delete';
+        deleteButton.className = 'btn btn-error btn-sm rounded ml-10';
         deleteButton.dataset.taskId = cursor.value.id;
         deleteButton.addEventListener('click', deleteTask);
 
