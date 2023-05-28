@@ -18,7 +18,7 @@ $result = $conn->query($sql);
 
 <div class="w-full h-full justify-center items-center flex mt-10">
 
-    <div class="w-full max-w-[90%] p-1 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-600 dark:border-gray-700">
+    <div class="w-full max-w-[95%] p-1 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-600 dark:border-gray-700">
         <form class="space-y-6" action="#">
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg h-[50vh]">
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -26,7 +26,7 @@ $result = $conn->query($sql);
                         <tr>
                             <th scope="col" class="p-4">
                                 <div class="flex items-center">
-                                <input type="checkbox" class="checkbox" />
+                                    <input type="checkbox" class="checkbox" />
                                 </div>
                             </th>
                             <th scope="col" class="px-6 py-3">
@@ -46,6 +46,9 @@ $result = $conn->query($sql);
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 Result
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Action
                             </th>
                         </tr>
                     </thead>
@@ -79,6 +82,12 @@ $result = $conn->query($sql);
                                     </td>
                                     <td class="px-6 py-4">
                                         <?php echo "$ " . $row["amount"]; ?>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <?php
+                                        //Delete by id
+                                        echo "<a href='./backend/delete_game.php?id=" . $row["id"] . "' class='btn btn-sm btn-outline btn-error btn-active rounded'>Delete</a>";
+                                        ?>
                                     </td>
                                 </tr>
                                 <?php $serialNumber++;  ?>

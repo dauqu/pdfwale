@@ -34,7 +34,7 @@ $party = $_GET['party'];
 $amount = $_GET['amount'];
 $type = $_GET['type'];
 $narration = $_GET['narration'];
-$clossing = "pending";
+$clossing = $_GET['amount'];
 
 
 // Insert data into the "games" table
