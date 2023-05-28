@@ -44,8 +44,8 @@ $result = $conn->query($sql);
             <div class="w-[150px] text-black btn-sm border-white-200 shadow h-10 pl-2 pr-2 btn btn-primary rounded btn-active" value="update" id="update">Modification</div>
             <div class="w-[150px] text-black btn-sm border-white-200 shadow h-10 pl-2 pr-2 btn btn-secondary rounded btn-active" value="delete">Delete</div>
 
-            <div class="box-content h-[40vh] w-90 border-2 border-gray-100 bg-gray-100">
-                <div class="overflow-x-auto rounded-none">
+            <div class="box-content h-[40vh] w-90 border-2 border-gray-100 bg-gray-100 overflow-y-scroll">
+                <div class="rounded-none">
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
@@ -74,11 +74,12 @@ $result = $conn->query($sql);
                                 $serialNumber = 1;
                                 // Output data of each row
                                 while ($row = $result->fetch_assoc()) {
+                                    $id = $row["id"]; // Assuming the ID column name is "id"
                             ?>
                                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                         <td class="w-4 p-4">
                                             <div class="flex items-center">
-                                                <input type="checkbox" class="checkbox checkbox-secondary" />
+                                                <input type="checkbox" value="<?php echo $id; ?>" class="checkbox checkbox-secondary" id="checkbox" name="selected_id[]" />
                                             </div>
                                         </td>
                                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -94,14 +95,12 @@ $result = $conn->query($sql);
                                             <?php echo $row["mobile"]; ?>
                                         </td>
                                     </tr>
-                                    <?php $serialNumber++;  ?>
-                            <?php
+                            <?php $serialNumber++;
                                 }
                             } else {
                                 echo "No data found";
                             }
                             ?>
-
                         </tbody>
                     </table>
                 </div>
@@ -113,6 +112,12 @@ $result = $conn->query($sql);
 
 <script>
     const update_btn = document.getElementById('update');
+    const selected_checkbox = document.getElementById('checkbox');
+
+    //On checkbox click
+    selected_checkbox.addEventListener('change', () => {
+       console.log("Clicked")
+    })
 
     // Update button click
     update_btn.addEventListener('click', () => {
