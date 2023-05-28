@@ -1,6 +1,18 @@
 <?php
 
 include './components/header.php';
+
+$servername = "localhost";
+$username = "pdf";
+$password = "7388139606";
+$dbname = "pdf";
+
+// Create a connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// SQL query to retrieve data
+$sql = "SELECT * FROM customer";
+$result = $conn->query($sql);
 ?>
 
 <div class="w-full h-full justify-center items-center flex mt-10">
@@ -16,7 +28,22 @@ include './components/header.php';
                 </div>
                 <div class="w-full mr-2">
                     <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Party</label>
-                    <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm input-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
+                    <select class="select rounded select-sm w-full">
+                        <?php
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                        ?>
+                                <option>
+                                    <?php echo $row["name"]; ?>
+                                </option>
+                        <?php
+                            }
+                        } else {
+                            echo "No data found";
+                        }
+                        ?>
+                    </select>
+                    <!-- <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm input-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required> -->
                 </div>
                 <div class="mr-2">
                     <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Full Leader</label>
@@ -27,7 +54,7 @@ include './components/header.php';
                 <div class="mr-2">
                     <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Clear Data</label>
                     <button class="btn rounded-none btn-sm btn-wide btn-primary">
-                    Clear Data
+                        Clear Data
                     </button>
                 </div>
                 <div class="mr-2">
@@ -267,7 +294,7 @@ include './components/header.php';
 
 
                         </tr>
-                       
+
                     </tbody>
                 </table>
             </div>
