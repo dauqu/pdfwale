@@ -13,7 +13,6 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 // SQL query to retrieve data
 $sql = "SELECT * FROM customer";
 $result = $conn->query($sql);
-
 ?>
 
 <div class="w-full h-full justify-center items-center flex mt-[5vh]">
@@ -97,8 +96,7 @@ $result = $conn->query($sql);
                                         <?php echo $row["mobile"]; ?>
                                     </td>
                                     <td class="px-6 py-4">
-                                        <!-- <?php echo $row["mobile"]; ?> -->
-                                        <button class="text-black btn-sm btn btn-secondary rounded btn-active">Delete</button>
+                                        <button class="text-black btn-sm btn btn-secondary rounded btn-active" id="delete_btn" onclick="deleteData(<?php echo $id; ?>)">Delete</button>
                                     </td>
                                 </tr>
                         <?php $serialNumber++;
@@ -118,11 +116,27 @@ $result = $conn->query($sql);
 <script>
     const update_btn = document.getElementById('update');
     const selected_checkbox = document.getElementById('checkbox');
+    const delete_button = document.getElementById('delete_btn');
 
-    //On checkbox click
-    selected_checkbox.addEventListener('change', () => {
-        console.log("Clicked")
-    })
+    function deleteData(id) {
+        //Post request to delete data 
+        fetch(`http://localhost/pdfwale/backend/delete_customer.php?id=${id}`, {
+                method: 'GET',
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    console.log('Customer deleted successfully.');
+                    //Reload page 
+                    window.location.reload();
+                } else {
+                    console.error('Error deleting customer:', data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
 
     // Update button click
     update_btn.addEventListener('click', () => {
