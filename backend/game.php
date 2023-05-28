@@ -19,7 +19,8 @@ $sql = "CREATE TABLE IF NOT EXISTS games (
     details VARCHAR(255),
     amount DECIMAL(10, 2),
     team_1 VARCHAR(255),
-    team_2 VARCHAR(255)
+    team_2 VARCHAR(255),
+    result VARCHAR(255)
 )";
 
 if ($conn->query($sql) === FALSE) {
@@ -35,8 +36,8 @@ $team_1 = $_GET['team_1'];
 $team_2 = $_GET['team_2'];
 
 // Insert data into the "games" table
-$sql = "INSERT INTO games (date, details, amount, team_1, team_2) 
-        VALUES ('$date', '$details', '$amount', '$team_1', '$team_2')";
+$sql = "INSERT INTO games (date, details, amount, team_1, team_2, result) 
+        VALUES ('$date', '$details', '$amount', '$team_1', '$team_2', 'pending')";
 
 if ($conn->query($sql) === TRUE) {
     echo "Data inserted successfully";

@@ -74,14 +74,14 @@ $result = $conn->query($sql);
                                     <td class="px-6 py-4">
                                         <?php echo $row["details"]; ?>
                                     </td>
-                                    <td class="px-6 py-4">
-                                        <?php echo $row["team_1"]; ?>
+                                    <td class="px-6 py-4 hover:bg-slate-900 cursor-pointer">
+                                    <a href="./backend/edit_game.php?id=<?php echo $row["id"]; ?>&result=<?php echo $row["team_1"]; ?>" class="text-white hover:text-blue-600"><?php echo $row["team_1"]; ?></a>
+                                    </td>
+                                    <td class="px-6 py-4 hover:bg-slate-900 cursor-pointer">
+                                        <a href="./backend/edit_game.php?id=<?php echo $row["id"]; ?>&result=<?php echo $row["team_2"]; ?>" class="text-white hover:text-blue-600"><?php echo $row["team_2"]; ?></a>
                                     </td>
                                     <td class="px-6 py-4">
-                                        <?php echo $row["team_1"]; ?>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <?php echo "$ " . $row["amount"]; ?>
+                                        <?php echo $row["result"]; ?>
                                     </td>
                                     <td class="px-6 py-4">
                                         <?php
