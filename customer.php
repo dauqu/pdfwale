@@ -41,8 +41,8 @@ $result = $conn->query($sql);
 
             </div>
             <button class="w-[150px] text-black btn-sm border-white-200 shadow h-10 pl-2 pr-2 btn btn-primary rounded btn-success btn-active" type="submit">Addittion</button>
-            <button class="w-[150px] text-black btn-sm border-white-200 shadow h-10 pl-2 pr-2 btn btn-primary rounded btn-active" value="update">Modification</button>
-            <button class="w-[150px] text-black btn-sm border-white-200 shadow h-10 pl-2 pr-2 btn btn-secondary rounded btn-active" value="delete">Delete</button>
+            <div class="w-[150px] text-black btn-sm border-white-200 shadow h-10 pl-2 pr-2 btn btn-primary rounded btn-active" value="update" id="update">Modification</div>
+            <div class="w-[150px] text-black btn-sm border-white-200 shadow h-10 pl-2 pr-2 btn btn-secondary rounded btn-active" value="delete">Delete</div>
 
             <div class="box-content h-[40vh] w-90 border-2 border-gray-100 bg-gray-100">
                 <div class="overflow-x-auto rounded-none">
@@ -111,6 +111,40 @@ $result = $conn->query($sql);
 </div>
 
 
+<script>
+    const update_btn = document.getElementById('update');
+
+    // Update button click
+    update_btn.addEventListener('click', () => {
+        console.log("Clicked")
+        //Add classname to the form
+        document.getElementById('update').classList.add('loading');
+        // Get the values from the form
+        const name = document.getElementById('name').value;
+        const reference = document.getElementById('reference').value;
+        const mobile = document.getElementById('mobile').value;
+
+        // Make a URL-encoded string for passing POST data:
+        const data = {
+            'name': name,
+            'reference': reference,
+            'mobile': mobile
+        };
+
+        // Send a POST request
+        fetch('./backend/customer.php', {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'content-type': 'application/json'
+                }
+            }).then(response => response.json())
+            .then(data => {
+                console.log(data)
+            })
+            .catch(error => console.error('Error:', error))
+    });
+</script>
 
 </body>
 
