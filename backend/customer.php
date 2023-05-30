@@ -17,7 +17,8 @@ $sql = "CREATE TABLE IF NOT EXISTS customer (
     id INT(11) AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255), 
     reference VARCHAR(255),
-    mobile VARCHAR(255)
+    mobile VARCHAR(255),
+    balance DECIMAL(10, 2)
 )";
 
 if ($conn->query($sql) === FALSE) {
@@ -31,8 +32,8 @@ $reference = $_GET['reference'];
 $mobile = $_GET['mobile'];
 
 // Insert data into the "games" table
-$sql = "INSERT INTO customer (name, reference, mobile) 
-        VALUES ('$name', '$reference', '$mobile')";
+$sql = "INSERT INTO customer (name, reference, mobile, balance) 
+        VALUES ('$name', '$reference', '$mobile', 0)";
 
 if ($conn->query($sql) === TRUE) {
     echo "Data inserted successfully";

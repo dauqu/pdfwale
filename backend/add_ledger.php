@@ -36,6 +36,27 @@ $type = $_GET['type'];
 $narration = $_GET['narration'];
 $clossing = $_GET['amount'];
 
+//Add amount to customer 
+$sql = "SELECT * FROM customer WHERE name='$party'";
+$result = $conn->query($sql);
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $balance = $row['balance'];
+    if($type == 'credit'){
+        $balance = $balance + $amount;
+    }else{
+        $balance = $balance - $amount;
+    }
+    $sql = "UPDATE customer SET balance='$balance' WHERE name='$party'";
+    if ($conn->query($sql) === FALSE) {
+        echo "Error updating table: " . $conn->error;
+        die();
+    }
+} else {
+    echo "Error updating table: " . $conn->error;
+    die();
+}
+
 
 // Insert data into the "games" table
 $sql = "INSERT INTO ledger (date, party, amount, type, narration, clossing) 
@@ -51,4 +72,3 @@ if ($conn->query($sql) === TRUE) {
 $conn->close();
 
 header("Location: ./../ledger.php");
-?>

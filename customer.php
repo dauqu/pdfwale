@@ -10,7 +10,7 @@ $dbname = "pdf";
 // Create a connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// SQL query to retrieve data
+//Select customer table if exists
 $sql = "SELECT * FROM customer";
 $result = $conn->query($sql);
 ?>
@@ -56,13 +56,16 @@ $result = $conn->query($sql);
                                 Table
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Date
+                                Name
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Details
+                                Reference
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Team 1
+                                Mobile No.
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Balance
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 Action
@@ -94,6 +97,9 @@ $result = $conn->query($sql);
                                     </td>
                                     <td class="px-6 py-4">
                                         <?php echo $row["mobile"]; ?>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <?php echo $row["balance"]; ?>
                                     </td>
                                     <td class="px-6 py-4">
                                         <button class="text-black btn-sm btn btn-secondary rounded btn-active" id="delete_btn" onclick="deleteData(<?php echo $id; ?>)">Delete</button>
