@@ -15,8 +15,58 @@ if ($conn->connect_error) {
 // Retrieve data from the URL parameters
 $id = $_GET['id']; // Assuming you pass the game ID through the URL parameter
 $result = $_GET['result']; // Assuming you pass the updated game result through the URL parameter
+$type = "credit";
+$narration = "$result won the game";
 
-// Update the "games" table with the new result based on the provided ID
+
+// ==================== Add amount to customer ====================
+//Select amount from games
+$sql = "SELECT * FROM games WHERE id=$id";
+$check_bal = $conn->query($sql);
+
+//Get amount from games
+if ($check_bal->num_rows > 0) {
+    $row = $check_bal->fetch_assoc();
+    $amount = $row['amount'];
+
+    //Add amount to customer 
+    $sql = "SELECT * FROM customer WHERE name='$result'";
+    $customerResult = $conn->query($sql);
+    if ($customerResult->num_rows > 0) {
+        $row = $customerResult->fetch_assoc();
+        $balance = $row['balance'];
+
+        $balance = $balance + $amount;
+
+        $sql = "UPDATE customer SET balance='$balance' WHERE name='$result'";
+        if ($conn->query($sql) === FALSE) {
+            echo "Error updating table: " . $conn->error;
+            die();
+        }
+    } else {
+        echo "Error updating table: " . $conn->error;
+        die();
+    }
+} else {
+    echo "Error updating table: " . $conn->error;
+    die();
+}
+
+//==================Add Ledger===================
+// Add data in ledger table
+// Insert data into the "games" table
+$sql = "INSERT INTO ledger (date, party, amount, type, narration, clossing) 
+        VALUES (CURDATE(), '$result', '$amount', '$type', '$narration', '$result')";
+
+if ($conn->query($sql) === TRUE) {
+    echo "Data inserted successfully";
+} else {
+    echo "Error inserting data: " . $conn->error;
+}
+
+
+
+// ==================== Update the "games" table ====================
 $sql = "UPDATE games SET result = '$result' WHERE id = $id";
 
 if ($conn->query($sql) === TRUE) {

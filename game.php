@@ -59,7 +59,11 @@ $result = $conn->query($sql);
                             // Output data of each row
                             while ($row = $result->fetch_assoc()) {
                         ?>
-                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <tr class="bg-green-600 border-b dark:bg-green-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 <?php if ($row["result"] != "pending") {
+                                                                                                                                                    echo "dark:bg-green-800";
+                                                                                                                                                } else {
+                                                                                                                                                    echo "dark:bg-slate-800";
+                                                                                                                                                } ?>">
                                     <td class="w-4 p-4">
                                         <div class="flex items-center">
 
@@ -75,10 +79,26 @@ $result = $conn->query($sql);
                                         <?php echo $row["details"]; ?>
                                     </td>
                                     <td class="px-6 py-4 hover:bg-slate-900 cursor-pointer">
-                                    <a href="./backend/edit_game.php?id=<?php echo $row["id"]; ?>&result=<?php echo $row["team_1"]; ?>" class="text-white hover:text-blue-600"><?php echo $row["team_1"]; ?></a>
+                                        <?php
+                                        //check if result is not pending
+                                        if ($row["result"] != "pending") {
+                                            //Show green background and name 
+                                            echo "<div class='text-white'>" . $row["team_1"] . "</div>";
+                                        } else {
+                                            echo "<a href='./backend/edit_game.php?id=" . $row["id"] . "&result=" . $row["team_1"] . "' class='text-white hover:text-blue-600 bg-green'>" . $row["team_1"] . "</a>";
+                                        }
+                                        ?>
                                     </td>
                                     <td class="px-6 py-4 hover:bg-slate-900 cursor-pointer">
-                                        <a href="./backend/edit_game.php?id=<?php echo $row["id"]; ?>&result=<?php echo $row["team_2"]; ?>" class="text-white hover:text-blue-600"><?php echo $row["team_2"]; ?></a>
+                                        <?php
+                                        //check if result is not pending
+                                        if ($row["result"] != "pending") {
+                                            //Show green background and name 
+                                            echo "<div class='text-white'>" . $row["team_2"] . "</div>";
+                                        } else {
+                                            echo "<a href='./backend/edit_game.php?id=" . $row["id"] . "&result=" . $row["team_2"] . "' class='text-white hover:text-blue-600 bg-green'>" . $row["team_2"] . "</a>";
+                                        }
+                                        ?>
                                     </td>
                                     <td class="px-6 py-4">
                                         <?php echo $row["result"]; ?>
@@ -86,7 +106,7 @@ $result = $conn->query($sql);
                                     <td class="px-6 py-4">
                                         <?php
                                         //Delete by id
-                                        echo "<a href='./backend/delete_game.php?id=" . $row["id"] . "' class='btn btn-sm btn-outline btn-error btn-active rounded'>Delete</a>";
+                                        echo "<a href='./backend/delete_game.php?id=" . $row["id"] . "' class='btn btn-sm btn-outline btn-error btn-active rounded uppercase'>Delete</a>";
                                         ?>
                                     </td>
                                 </tr>
