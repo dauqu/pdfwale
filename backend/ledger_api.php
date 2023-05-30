@@ -12,8 +12,12 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+// Retrieve data from the database
+$name = $_GET['name']; // Assuming you pass the name through the URL parameter
 
-$sql = "SELECT * FROM customer";
+
+
+$sql = "SELECT * FROM ledger WHERE party='$name'";
 $result = $conn->query($sql);
 
 // Check if any data was found

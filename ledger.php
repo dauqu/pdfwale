@@ -64,9 +64,22 @@ $total_amount = $total_credit - $total_debit;
                 </div>
                 <div class="mr-2">
                     <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Full Leader</label>
-                    <button class="btn rounded-none btn-sm btn-wide btn-primary btn-disabled">
+                    <!-- <button class="btn rounded-none btn-sm btn-wide btn-primary btn-disabled">
                         Full Leader
-                    </button>
+                    </button> -->
+                    <label for="my-modal" class="btn rounded-none btn-sm btn-wide btn-primary" onclick="myFunction()">open modal</label>
+
+                    <!-- Put this part before </body> tag -->
+                    <input type="checkbox" id="my-modal" class="modal-toggle" />
+                    <div class="modal">
+                        <div class="modal-box max-w-[60%]">
+                            <h3 class="font-bold text-lg">Details</h3>
+                            <p class="py-4" id="get_details">Data</p>
+                            <div class="modal-action">
+                                <label for="my-modal" class="btn rounded btn-sm">Close</label>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="mr-2">
                     <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Clear Data</label>
@@ -229,7 +242,66 @@ $total_amount = $total_credit - $total_debit;
     </div>
 </div>
 
+<script>
 
+function myFunction() {
+  var name = document.getElementById("party").value; // Assuming "party" is the ID of an input field
+
+  // Construct the URL with the dynamic data
+  var url = "http://localhost/pdfwale/backend/ledger_api.php?name=" + encodeURIComponent(name);
+
+  // Fetch the data from the server
+  fetch(url)
+    .then(response => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw new Error("Server response wasn't OK");
+        }
+    }) // Assuming the response is in JSON format
+    .then(data => {
+        console.log(data);
+      // Create a table element with Tailwind CSS classes
+      var table = document.createElement("table");
+      table.classList.add("min-w-full", "bg-white", "border", "border-gray-200");
+      table.classList.add("shadow-md", "divide-y", "divide-gray-200");
+
+      // Create table header row with Tailwind CSS classes
+      var headerRow = table.insertRow();
+      headerRow.classList.add("bg-gray-100");
+      for (var prop in data[0]) {
+        var headerCell = headerRow.insertCell();
+        headerCell.textContent = prop;
+        headerCell.classList.add("px-4", "py-2", "font-semibold", "text-gray-700");
+      }
+
+      // Create table rows and cells with data and Tailwind CSS classes
+      for (var i = 0; i < data.length; i++) {
+        var row = table.insertRow();
+        for (var prop in data[i]) {
+          var cell = row.insertCell();
+          cell.textContent = data[i][prop];
+          cell.classList.add("px-4", "py-2", "text-gray-700");
+        }
+      }
+
+      // Find the element with ID "get_details"
+      var detailsElement = document.getElementById("get_details");
+
+      // Clear the element's content
+      detailsElement.innerHTML = "";
+
+      // Append the table to the details element
+      detailsElement.appendChild(table);
+    })
+    .catch(error => {
+      // Handle any errors that occurred during the fetch
+      console.error("Error:", error);
+    });
+}
+
+
+</script>
 </body>
 
 </html>

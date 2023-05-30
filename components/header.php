@@ -30,10 +30,45 @@
                         <li><a href="./game.php">Game</a></li>
                     </ul>
                 </li>
-                <li><a href="./report.php">Report</a></li>
+                <li class="loading">
+                    <div class="btn btn-link" onclick="copytoclipboard()" id="report">Report</div>
+                </li>
                 <li><a href="./ledger.php">Ledger</a></li>
                 <li><a href="./daybook.php">Day Book</a></li>
                 <li><a href="./exit.php">Exit</a></li>
             </ul>
         </div>
     </div>
+
+    <script>
+        function copytoclipboard() {
+            const reportDiv = document.getElementById('report');
+            reportDiv.classList.add('loading');
+
+            // Make an HTTP request to fetch the report data
+            fetch('./backend/get_customer.php')
+                .then(response => response.text())
+                .then(data => {
+                    // Copy the data to the clipboard
+                    const textarea = document.createElement('textarea');
+                    textarea.value = data;
+                    document.body.appendChild(textarea);
+                    textarea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textarea);
+
+                    // Remove the "loading" class from the report div
+                    reportDiv.classList.remove('loading');
+
+                    // Optionally, you can display a success message to the user
+                    alert('Report data copied to clipboard!');
+                })
+                .catch(error => {
+                    // Remove the "loading" class from the report div
+                    reportDiv.classList.remove('loading');
+
+                    // Handle any errors that occurred during the request
+                    console.error('Error fetching report data:', error);
+                });
+        }
+    </script>

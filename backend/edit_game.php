@@ -73,10 +73,24 @@ if ($check_bal->num_rows > 0) {
 }
 
 //==================Add Ledger===================
-// Add data in ledger table
-// Insert data into the "games" table
-$sql = "INSERT INTO ledger (date, party, amount, type, narration, clossing) 
-        VALUES (CURDATE(), '$result', '$amount', '$type', '$narration', '$result')";
+
+//Get balance from customer 
+$sql = "SELECT * FROM customer WHERE name='$result'";
+$customerResult = $conn->query($sql);
+if ($customerResult->num_rows > 0) {
+    $row = $customerResult->fetch_assoc();
+    $balance = $row['balance'];
+    echo $balance;
+    // Add data in ledger table
+    // Insert data into the "games" table
+    $sql = "INSERT INTO ledger (date, party, amount, type, narration, clossing) 
+VALUES (CURDATE(), '$result', '$amount', '$type', '$narration', '$balance')";
+} else {
+    echo "Error updating table: " . $conn->error;
+    die();
+}
+
+
 
 if ($conn->query($sql) === TRUE) {
     echo "Data inserted successfully";
