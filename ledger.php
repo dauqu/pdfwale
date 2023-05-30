@@ -197,7 +197,7 @@ $total_amount = $total_credit - $total_debit;
                             <span class="label-text text-white">
                                 Debit
                             </span>
-                            <input type="radio" name="type" value="debit" class="radio checked:bg-red-500" checked require />
+                            <input type="radio" name="type" value="debit" class="radio checked:bg-red-500" require />
                         </label>
                     </div>
                     <div class="form-control">
@@ -205,7 +205,7 @@ $total_amount = $total_credit - $total_debit;
                             <span class="label-text text-white">
                                 Credit
                             </span>
-                            <input type="radio" name="type" value="credit" class="radio checked:bg-green-500" require />
+                            <input type="radio" name="type" value="credit" class="radio checked:bg-green-500" checked require />
                         </label>
                     </div>
                 </div>
