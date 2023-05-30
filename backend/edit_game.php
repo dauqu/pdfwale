@@ -14,7 +14,8 @@ if ($conn->connect_error) {
 
 // Retrieve data from the URL parameters
 $id = $_GET['id']; // Assuming you pass the game ID through the URL parameter
-$result = $_GET['result']; // Assuming you pass the updated game result through the URL parameter
+$result = $_GET['result'];
+$result2 = $_GET['result2'];
 $type = "credit";
 $narration = "$result won the game";
 
@@ -39,6 +40,25 @@ if ($check_bal->num_rows > 0) {
         $balance = $balance + $amount;
 
         $sql = "UPDATE customer SET balance='$balance' WHERE name='$result'";
+        if ($conn->query($sql) === FALSE) {
+            echo "Error updating table: " . $conn->error;
+            die();
+        }
+    } else {
+        echo "Error updating table: " . $conn->error;
+        die();
+    }
+
+    //Decrease amount from customer
+    $sql = "SELECT * FROM customer WHERE name='$result2'";
+    $customerResult2 = $conn->query($sql);
+    if ($customerResult2->num_rows > 0) {
+        $row = $customerResult2->fetch_assoc();
+        $balance = $row['balance'];
+
+        $balance = $balance - $amount;
+
+        $sql = "UPDATE customer SET balance='$balance' WHERE name='$result2'";
         if ($conn->query($sql) === FALSE) {
             echo "Error updating table: " . $conn->error;
             die();
