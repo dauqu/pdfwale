@@ -51,7 +51,7 @@ $total_amount = $total_credit - $total_debit;
                             while ($row = $result2->fetch_assoc()) {
                         ?>
                                 <option>
-                                    <?php echo $row["name"]; ?>
+                                    <?php echo $row["name"]; ?> = <?php echo $row["reference"]; ?>
                                 </option>
                         <?php
                             }

@@ -83,7 +83,7 @@ $result = $conn->query($sql);
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                     <td class="w-4 p-4">
                                         <div class="flex items-center">
-                                            <input type="checkbox" value="<?php echo $id; ?>" class="checkbox checkbox-secondary" id="checkbox" name="selected_id[]" />
+                                            <input type="radio" name="customer" id="<?php echo $id; ?>" value="<?php echo $id; ?>" class="checkbox checkbox-secondary" id="checkbox" name="selected_id[]" />
                                         </div>
                                     </td>
                                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
