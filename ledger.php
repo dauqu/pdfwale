@@ -83,7 +83,7 @@ $total_amount = $total_credit - $total_debit;
                 </div>
                 <div class="mr-2">
                     <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Clear Data</label>
-                    <button class="btn rounded-none btn-sm btn-wide btn-primary">
+                    <button class="btn rounded-none btn-sm btn-wide btn-primary btn-disabled">
                         Clear Data
                     </button>
                 </div>

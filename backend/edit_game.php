@@ -46,7 +46,10 @@ if ($check_bal->num_rows > 0) {
         $row = $customerResult->fetch_assoc();
         $balance = $row['balance'];
 
-        $balance = $balance + $amount;
+        // $balance = $balance + $amount;
+
+        //Add amount with 2% commission
+        $balance = $balance + ($amount * 0.98);
 
         $sql = "UPDATE customer SET balance='$balance' WHERE name='$result'";
         if ($conn->query($sql) === FALSE) {
@@ -102,6 +105,39 @@ if ($customerResult) {
         }
 
         // Insert data into the "ledger" table for the second time
+        // $sql2 = "INSERT INTO ledger (date, party, amount, type, narration, clossing) VALUES (CURDATE(), '$result2', '$amount', '$type2', '$narration2', '$balance')";
+        // if ($conn->query($sql2) === TRUE) {
+        //     echo "Second record inserted successfully into the ledger table.";
+        // } else {
+        //     echo "Error inserting second record into the ledger table: " . $conn->error;
+        // }
+    } else {
+        echo "No customer found with the name: $result";
+    }
+} else {
+    echo "Error executing query: " . $conn->error;
+}
+
+
+//Get balance from customer 
+$customersql2 = "SELECT * FROM customer WHERE name='$result2'";
+$customerResult2 = $conn->query($customersql2);
+
+if ($customerResult2) {
+    if ($customerResult2->num_rows > 0) {
+        $row = $customerResult2->fetch_assoc();
+        $balance = $row['balance'];
+        echo $balance;
+
+        // Insert data into the "ledger" table for the first time
+        // $sql1 = "INSERT INTO ledger (date, party, amount, type, narration, clossing) VALUES (CURDATE(), '$result', '$amount', '$type', '$narration', '$balance')";
+        // if ($conn->query($sql1) === TRUE) {
+        //     echo "First record inserted successfully into the ledger table.";
+        // } else {
+        //     echo "Error inserting first record into the ledger table: " . $conn->error;
+        // }
+
+        // Insert data into the "ledger" table for the second time
         $sql2 = "INSERT INTO ledger (date, party, amount, type, narration, clossing) VALUES (CURDATE(), '$result2', '$amount', '$type2', '$narration2', '$balance')";
         if ($conn->query($sql2) === TRUE) {
             echo "Second record inserted successfully into the ledger table.";
@@ -114,7 +150,6 @@ if ($customerResult) {
 } else {
     echo "Error executing query: " . $conn->error;
 }
-
 
 
 // if ($conn->query($sql) === TRUE) {
