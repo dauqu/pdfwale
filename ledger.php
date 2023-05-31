@@ -265,7 +265,7 @@ $total_amount = $total_credit - $total_debit;
         var name = document.getElementById("party").value; // Assuming "party" is the ID of an input field
 
         // Construct the URL with the dynamic data
-        var url = "http://localhost/pdfwale/backend/ledger_api.php?name=" + encodeURIComponent(name);
+        var url = "https://saitify.com/backend/ledger_api.php?name=" + encodeURIComponent(name);
 
         // Fetch the data from the server
         fetch(url)
