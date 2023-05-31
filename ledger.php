@@ -174,10 +174,28 @@ $total_amount = $total_credit - $total_debit;
                                         <?php echo $row["clossing"]; ?>
                                     </td>
                                     <td class="px-6 py-4">
-                                        <?php
-                                        //Delete by id
-                                        echo "<a href='./backend/delete_ledger.php?id=" . $id . "' class='btn btn-sm btn-outline btn-error btn-active rounded'>Delete</a>";
-                                        ?>
+                                        <!-- The button to open modal -->
+                                        <label for="delete-modal" class="btn btn-sm rounded btn-active btn-error">Delete </label>
+
+                                        <!-- Put this part before </body> tag -->
+                                        <input type="checkbox" id="delete-modal" class="modal-toggle" />
+                                        <div class="modal">
+                                            <div class="modal-box">
+                                                <h3 class="font-bold text-lg">
+                                                    Are you sure you want to delete this data?
+                                                </h3>
+                                                <p class="py-4">
+                                                    This action cannot be undone.
+                                                </p>
+                                                <div class="modal-action">
+                                                    <label for="delete-modal" class="btn btn-primary rounded btn-sm btn-active">Close</label>
+                                                    <?php
+                                                    //Delete by id
+                                                    echo "<a href='./backend/delete_ledger.php?id=" . $id . "' class='btn btn-sm btn-outline btn-error btn-active rounded'>Delete</a>";
+                                                    ?>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                         <?php $serialNumber++;
@@ -243,64 +261,61 @@ $total_amount = $total_credit - $total_debit;
 </div>
 
 <script>
+    function myFunction() {
+        var name = document.getElementById("party").value; // Assuming "party" is the ID of an input field
 
-function myFunction() {
-  var name = document.getElementById("party").value; // Assuming "party" is the ID of an input field
+        // Construct the URL with the dynamic data
+        var url = "http://localhost/pdfwale/backend/ledger_api.php?name=" + encodeURIComponent(name);
 
-  // Construct the URL with the dynamic data
-  var url = "http://localhost/pdfwale/backend/ledger_api.php?name=" + encodeURIComponent(name);
+        // Fetch the data from the server
+        fetch(url)
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error("Server response wasn't OK");
+                }
+            }) // Assuming the response is in JSON format
+            .then(data => {
+                console.log(data);
+                // Create a table element with Tailwind CSS classes
+                var table = document.createElement("table");
+                table.classList.add("min-w-full", "bg-white", "border", "border-gray-200");
+                table.classList.add("shadow-md", "divide-y", "divide-gray-200");
 
-  // Fetch the data from the server
-  fetch(url)
-    .then(response => {
-        if (response.ok) {
-            return response.json();
-        } else {
-            throw new Error("Server response wasn't OK");
-        }
-    }) // Assuming the response is in JSON format
-    .then(data => {
-        console.log(data);
-      // Create a table element with Tailwind CSS classes
-      var table = document.createElement("table");
-      table.classList.add("min-w-full", "bg-white", "border", "border-gray-200");
-      table.classList.add("shadow-md", "divide-y", "divide-gray-200");
+                // Create table header row with Tailwind CSS classes
+                var headerRow = table.insertRow();
+                headerRow.classList.add("bg-gray-100");
+                for (var prop in data[0]) {
+                    var headerCell = headerRow.insertCell();
+                    headerCell.textContent = prop;
+                    headerCell.classList.add("px-4", "py-2", "font-semibold", "text-gray-700");
+                }
 
-      // Create table header row with Tailwind CSS classes
-      var headerRow = table.insertRow();
-      headerRow.classList.add("bg-gray-100");
-      for (var prop in data[0]) {
-        var headerCell = headerRow.insertCell();
-        headerCell.textContent = prop;
-        headerCell.classList.add("px-4", "py-2", "font-semibold", "text-gray-700");
-      }
+                // Create table rows and cells with data and Tailwind CSS classes
+                for (var i = 0; i < data.length; i++) {
+                    var row = table.insertRow();
+                    for (var prop in data[i]) {
+                        var cell = row.insertCell();
+                        cell.textContent = data[i][prop];
+                        cell.classList.add("px-4", "py-2", "text-gray-700");
+                    }
+                }
 
-      // Create table rows and cells with data and Tailwind CSS classes
-      for (var i = 0; i < data.length; i++) {
-        var row = table.insertRow();
-        for (var prop in data[i]) {
-          var cell = row.insertCell();
-          cell.textContent = data[i][prop];
-          cell.classList.add("px-4", "py-2", "text-gray-700");
-        }
-      }
+                // Find the element with ID "get_details"
+                var detailsElement = document.getElementById("get_details");
 
-      // Find the element with ID "get_details"
-      var detailsElement = document.getElementById("get_details");
+                // Clear the element's content
+                detailsElement.innerHTML = "";
 
-      // Clear the element's content
-      detailsElement.innerHTML = "";
-
-      // Append the table to the details element
-      detailsElement.appendChild(table);
-    })
-    .catch(error => {
-      // Handle any errors that occurred during the fetch
-      console.error("Error:", error);
-    });
-}
-
-
+                // Append the table to the details element
+                detailsElement.appendChild(table);
+            })
+            .catch(error => {
+                // Handle any errors that occurred during the fetch
+                console.error("Error:", error);
+            });
+    }
 </script>
 </body>
 

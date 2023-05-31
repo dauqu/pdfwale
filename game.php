@@ -104,10 +104,29 @@ $result = $conn->query($sql);
                                         <?php echo $row["result"]; ?>
                                     </td>
                                     <td class="px-6 py-4">
-                                        <?php
-                                        //Delete by id
-                                        echo "<a href='./backend/delete_game.php?id=" . $row["id"] . "' class='btn btn-sm btn-outline btn-error btn-active rounded uppercase'>Delete</a>";
-                                        ?>
+
+                                        <!-- The button to open modal -->
+                                        <label for="my-modal" class="btn btn-sm rounded btn-active btn-error">Delete </label>
+
+                                        <!-- Put this part before </body> tag -->
+                                        <input type="checkbox" id="my-modal" class="modal-toggle" />
+                                        <div class="modal">
+                                            <div class="modal-box">
+                                                <h3 class="font-bold text-lg">
+                                                    Are you sure you want to delete this game?
+                                                </h3>
+                                                <p class="py-4">
+                                                    This action cannot be undone.
+                                                </p>
+                                                <div class="modal-action">
+                                                    <label for="my-modal" class="btn btn-primary rounded btn-sm btn-active">Close</label>
+                                                    <?php
+                                                    //Delete by id
+                                                    echo "<a href='./backend/delete_game.php?id=" . $row["id"] . "' class='btn btn-sm btn-outline btn-error btn-active rounded uppercase'>Delete</a>";
+                                                    ?>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                                 <?php $serialNumber++;  ?>

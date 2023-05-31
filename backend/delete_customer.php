@@ -12,38 +12,15 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Check if the customer ID is provided in the request
-if (!isset($_GET['id'])) {
-    $response = array(
-        'success' => false,
-        'message' => 'Customer ID is required.'
-    );
-    echo json_encode($response);
-    exit;
-}
+//get id from url
+$id = $_GET['id'];
 
-// Get the customer ID from the request
-$customerID = $_GET['id'];
+//delete ledger from the "ledger" table
+$sql = "DELETE FROM customer WHERE id = $id";
 
-// Delete the customer from the "customer" table
-$sql = "DELETE FROM customer WHERE id = $customerID";
-
+//Return to ledger.php
 if ($conn->query($sql) === TRUE) {
-    $response = array(
-        'success' => true,
-        'message' => 'Customer deleted successfully.'
-    );
+    header("Location: ./../customer.php");
 } else {
-    $response = array(
-        'success' => false,
-        'message' => 'Error deleting customer: ' . $conn->error
-    );
+    echo "Error deleting ledger: " . $conn->error;
 }
-
-// Send JSON response
-header('Content-Type: application/json');
-echo json_encode($response);
-
-// Close the connection
-$conn->close();
-?>
