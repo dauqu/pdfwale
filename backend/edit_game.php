@@ -17,7 +17,16 @@ $id = $_GET['id']; // Assuming you pass the game ID through the URL parameter
 $result = $_GET['result'];
 $result2 = $_GET['result2'];
 $type = "credit";
+$type2 = "debit";
 $narration = "$result won the game";
+$narration2 = "$result2 loose the game";
+
+echo $id;
+echo $result;
+echo $result2;
+echo $type;
+echo $narration;
+echo $narration2;
 
 
 // ==================== Add amount to customer ====================
@@ -75,28 +84,44 @@ if ($check_bal->num_rows > 0) {
 //==================Add Ledger===================
 
 //Get balance from customer 
-$sql = "SELECT * FROM customer WHERE name='$result'";
-$customerResult = $conn->query($sql);
-if ($customerResult->num_rows > 0) {
-    $row = $customerResult->fetch_assoc();
-    $balance = $row['balance'];
-    echo $balance;
-    // Add data in ledger table
-    // Insert data into the "games" table
-    $sql = "INSERT INTO ledger (date, party, amount, type, narration, clossing) 
-VALUES (CURDATE(), '$result', '$amount', '$type', '$narration', '$balance')";
+$customersql = "SELECT * FROM customer WHERE name='$result'";
+$customerResult = $conn->query($customersql);
+
+if ($customerResult) {
+    if ($customerResult->num_rows > 0) {
+        $row = $customerResult->fetch_assoc();
+        $balance = $row['balance'];
+        echo $balance;
+
+        // Insert data into the "ledger" table for the first time
+        $sql1 = "INSERT INTO ledger (date, party, amount, type, narration, clossing) VALUES (CURDATE(), '$result', '$amount', '$type', '$narration', '$balance')";
+        if ($conn->query($sql1) === TRUE) {
+            echo "First record inserted successfully into the ledger table.";
+        } else {
+            echo "Error inserting first record into the ledger table: " . $conn->error;
+        }
+
+        // Insert data into the "ledger" table for the second time
+        $sql2 = "INSERT INTO ledger (date, party, amount, type, narration, clossing) VALUES (CURDATE(), '$result2', '$amount', '$type2', '$narration2', '$balance')";
+        if ($conn->query($sql2) === TRUE) {
+            echo "Second record inserted successfully into the ledger table.";
+        } else {
+            echo "Error inserting second record into the ledger table: " . $conn->error;
+        }
+    } else {
+        echo "No customer found with the name: $result";
+    }
 } else {
-    echo "Error updating table: " . $conn->error;
-    die();
+    echo "Error executing query: " . $conn->error;
 }
 
 
 
-if ($conn->query($sql) === TRUE) {
-    echo "Data inserted successfully";
-} else {
-    echo "Error inserting data: " . $conn->error;
-}
+// if ($conn->query($sql) === TRUE) {
+//     echo "Data inserted successfully";
+// } else {
+//     echo "Error inserting data: " . $conn->error;
+// }
 
 
 

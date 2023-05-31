@@ -96,7 +96,7 @@ $result = $conn->query($sql);
                                             //Show green background and name 
                                             echo "<div class='text-white'>" . $row["team_2"] . "</div>";
                                         } else {
-                                            echo "<a href='./backend/edit_game.php?id=" . $row["id"] . "&result=" . $row["team_2"] . "&result2=" . $row["team_2"] . "' class='text-white hover:text-blue-600 bg-green'>" . $row["team_2"] . "</a>";
+                                            echo "<a href='./backend/edit_game.php?id=" . $row["id"] . "&result=" . $row["team_1"] . "&result2=" . $row["team_2"] . "' class='text-white hover:text-blue-600 bg-green'>" . $row["team_2"] . "</a>";
                                         }
                                         ?>
                                     </td>
