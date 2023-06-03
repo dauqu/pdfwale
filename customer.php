@@ -114,10 +114,10 @@ $result = $conn->query($sql);
                                                     Are you sure you want to delete this game?
                                                 </h3>
                                                 <p class="py-4">
-                                                    This action cannot be undone.
+                                                    This action cannot be undone. <?php echo $row["name"]; ?> will be deleted.
                                                 </p>
                                                 <div class="modal-action">
-                                                    <label for="my-modal" class="btn btn-primary rounded btn-sm btn-active">Close</label>
+                                                    <label for="my-modal" class="btn btn-primary rounded btn-sm btn-active">Cancel</label>
                                                     <?php
                                                     //Delete by id
                                                     echo "<a href='./backend/delete_customer.php?id=" . $row["id"] . "' class='btn btn-sm btn-outline btn-error btn-active rounded uppercase'>Delete</a>";
