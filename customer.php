@@ -64,9 +64,9 @@ $result = $conn->query($sql);
                             <th scope="col" class="px-6 py-3">
                                 Mobile No.
                             </th>
-                            <th scope="col" class="px-6 py-3">
+                            <!-- <th scope="col" class="px-6 py-3">
                                 Balance
-                            </th>
+                            </th> -->
                             <th scope="col" class="px-6 py-3">
                                 Action
                             </th>
@@ -98,9 +98,9 @@ $result = $conn->query($sql);
                                     <td class="px-6 py-4">
                                         <?php echo $row["mobile"]; ?>
                                     </td>
-                                    <td class="px-6 py-4">
+                                    <!-- <td class="px-6 py-4">
                                         <?php echo $row["balance"]; ?>
-                                    </td>
+                                    </td> -->
                                     <td class="px-6 py-4">
                                         <!-- <button class="text-black btn-sm btn btn-secondary rounded btn-active" id="delete_btn" onclick="deleteData(<?php echo $id; ?>)">Delete</button> -->
                                         <!-- The button to open modal -->

@@ -49,6 +49,7 @@
             fetch('./backend/get_customer.php')
                 .then(response => response.text())
                 .then(data => {
+                    console.log(data)
                     // Copy the data to the clipboard
                     const textarea = document.createElement('textarea');
                     textarea.value = data;

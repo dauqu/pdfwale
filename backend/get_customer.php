@@ -22,6 +22,10 @@ if ($result->num_rows > 0) {
 
     // Fetch the data and append it to the string
     while ($row = $result->fetch_assoc()) {
+        // Exclude the "id" field
+        unset($row['id']);
+        unset($row['mobile']);
+
         $text .= implode("\t", $row) . "\n";
     }
 

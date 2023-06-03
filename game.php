@@ -60,7 +60,7 @@ $result = $conn->query($sql);
                             while ($row = $result->fetch_assoc()) {
                         ?>
                                 <tr class="bg-green-600 border-b dark:bg-green-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 <?php if ($row["result"] != "pending") {
-                                                                                                                                                    echo "dark:bg-green-800";
+                                                                                                                                                    echo "dark:bg-slate-800";
                                                                                                                                                 } else {
                                                                                                                                                     echo "dark:bg-slate-800";
                                                                                                                                                 } ?>">
@@ -119,10 +119,10 @@ $result = $conn->query($sql);
                                                     This action cannot be undone.
                                                 </p>
                                                 <div class="modal-action">
-                                                    <label for="my-modal" class="btn btn-primary rounded btn-sm btn-active">Close</label>
+                                                    <label for="my-modal" class="btn btn-primary rounded btn-sm btn-active">Cancel</label>
                                                     <?php
                                                     //Delete by id
-                                                    echo "<a href='./backend/delete_game.php?id=" . $row["id"] . "' class='btn btn-sm btn-outline btn-error btn-active rounded uppercase'>Delete</a>";
+                                                    // echo "<a href='./backend/delete_game.php?id=" . $row["id"] . "' class='btn btn-sm btn-outline btn-error btn-active rounded uppercase'>Delete</a>";
                                                     ?>
                                                 </div>
                                             </div>
