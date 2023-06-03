@@ -97,10 +97,10 @@ $result = $conn->query($sql);
                                     <td class="px-6 py-4">
                                         <!-- <button class="text-black btn-sm btn btn-secondary rounded btn-active" id="delete_btn" onclick="deleteData(<?php echo $id; ?>)">Delete</button> -->
                                         <!-- The button to open modal -->
-                                        <label for="my-modal" class="btn btn-sm rounded btn-active btn-error">Delete </label>
+                                        <label for="my-modal-<?php echo $id; ?>" class="btn btn-sm rounded btn-active btn-error">Delete </label>
 
                                         <!-- Put this part before </body> tag -->
-                                        <input type="checkbox" id="my-modal" class="modal-toggle" />
+                                        <input type="checkbox" id="my-modal-<?php echo $id; ?>" class="modal-toggle" />
                                         <div class="modal">
                                             <div class="modal-box">
                                                 <h3 class="font-bold text-lg">
@@ -110,7 +110,7 @@ $result = $conn->query($sql);
                                                     This action cannot be undone. <?php echo $row["name"]; ?> will be deleted.
                                                 </p>
                                                 <div class="modal-action">
-                                                    <label for="my-modal" class="btn btn-primary rounded btn-sm btn-active">Cancel</label>
+                                                    <label for="my-modal-<?php echo $id; ?>" class="btn btn-primary rounded btn-sm btn-active">Cancel</label>
                                                     <?php
                                                     //Delete by id
                                                     echo "<a href='./backend/delete_customer.php?id=" . $row["id"] . "' class='btn btn-sm btn-outline btn-error btn-active rounded uppercase'>Delete</a>";
@@ -141,7 +141,7 @@ $result = $conn->query($sql);
 
     function deleteData(id) {
         //Post request to delete data 
-        fetch(`http://localhost/pdfwale/backend/delete_customer.php?id=${id}`, {
+        fetch(`./backend/delete_customer.php?id=${id}`, {
                 method: 'GET',
             })
             .then(response => response.json())

@@ -168,10 +168,10 @@ $total_amount = $total_credit - $total_debit;
                                     </td>
                                     <td class="px-6 py-4">
                                         <!-- The button to open modal -->
-                                        <label for="delete-modal" class="btn btn-sm rounded btn-active btn-error">Delete </label>
+                                        <label for="delete-modal-<?php echo $id; ?>" class="btn btn-sm rounded btn-active btn-error">Delete </label>
 
                                         <!-- Put this part before </body> tag -->
-                                        <input type="checkbox" id="delete-modal" class="modal-toggle" />
+                                        <input type="checkbox" id="delete-modal-<?php echo $id; ?>" class="modal-toggle" />
                                         <div class="modal">
                                             <div class="modal-box">
                                                 <h3 class="font-bold text-lg">
@@ -181,7 +181,7 @@ $total_amount = $total_credit - $total_debit;
                                                     This action cannot be undone.
                                                 </p>
                                                 <div class="modal-action">
-                                                    <label for="delete-modal" class="btn btn-primary rounded btn-sm btn-active">Close</label>
+                                                    <label for="delete-modal-<?php echo $id; ?>" class="btn btn-primary rounded btn-sm btn-active">Close</label>
                                                     <?php
                                                     //Delete by id
                                                     echo "<a href='./backend/delete_ledger.php?id=" . $id . "' class='btn btn-sm btn-outline btn-error btn-active rounded'>Delete</a>";
