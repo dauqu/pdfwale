@@ -97,12 +97,19 @@ $result = $conn->query($sql);
                                         <?php echo $row["result"]; ?>
                                     </td>
                                     <td class="px-6 py-4">
-
                                         <!-- The button to open modal -->
-                                        <label for="my-modal-<?php echo $id; ?>" class="btn btn-sm rounded btn-active btn-error">Delete </label>
-
+                                        <label for="my-modals-<?php echo $row["id"]; ?>" class="btn btn-sm rounded btn-active btn-error <?php echo ($row["result"] == "canceled") ? 'btn-disabled' : ''; ?>">
+                                            <!-- If result is canceled -->
+                                            <?php
+                                            if ($row["result"] == "canceled") {
+                                                echo "Canceled";
+                                            } else {
+                                                echo "Cancel";
+                                            }
+                                            ?>
+                                        </label>
                                         <!-- Put this part before </body> tag -->
-                                        <input type="checkbox" id="my-modal-<?php echo $id; ?>" class="modal-toggle" />
+                                        <input type="checkbox" id="my-modals-<?php echo $row["id"]; ?>" class="modal-toggle" />
                                         <div class="modal">
                                             <div class="modal-box">
                                                 <h3 class="font-bold text-lg">
@@ -112,10 +119,10 @@ $result = $conn->query($sql);
                                                     This action cannot be undone.
                                                 </p>
                                                 <div class="modal-action">
-                                                    <label for="my-modal-<?php echo $id; ?>" class="btn btn-primary rounded btn-sm btn-active">Cancel</label>
+                                                    <label for="my-modals-<?php echo $row["id"]; ?>" class="btn btn-primary rounded btn-sm btn-active">Close</label>
                                                     <?php
                                                     //Delete by id
-                                                    // echo "<a href='./backend/delete_game.php?id=" . $row["id"] . "' class='btn btn-sm btn-outline btn-error btn-active rounded uppercase'>Delete</a>";
+                                                    echo "<a href='./backend/delete_game.php?result=canceled&id=" . $row["id"] . "' class='btn btn-sm btn-outline btn-error btn-active rounded uppercase'>Yes Cancel</a>";
                                                     ?>
                                                 </div>
                                             </div>

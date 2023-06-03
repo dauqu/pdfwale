@@ -1,16 +1,9 @@
 <?php
 
 include './components/header.php';
-
-$servername = "localhost";
-$username = "pdf";
-$password = "7388139606";
-$dbname = "pdf";
+include './config.php';
 
 $date = $_GET['date'];
-
-// Create a connection
-$conn = new mysqli($servername, $username, $password, $dbname);
 
 //Select customer table if exists
 $sql = "SELECT * FROM ledger WHERE date='$date'";
