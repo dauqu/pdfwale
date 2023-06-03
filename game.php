@@ -1,14 +1,7 @@
 <?php
 
 include './components/header.php';
-
-$servername = "localhost";
-$username = "pdf";
-$password = "7388139606";
-$dbname = "pdf";
-
-// Create a connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+include './config.php';
 
 // SQL query to retrieve data
 $sql = "SELECT * FROM games";

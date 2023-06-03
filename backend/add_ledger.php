@@ -1,11 +1,5 @@
 <?php
-$servername = "localhost";
-$username = "pdf";
-$password = "7388139606";
-$dbname = "pdf";
-
-// Create a connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+include './../config.php';
 
 // Check connection
 if ($conn->connect_error) {
@@ -61,7 +55,7 @@ if ($result->num_rows > 0) {
         die();
     }
 } else {
-    echo "Error updating table: " . $conn->error;
+    echo "Error updating table 1: " . $conn->error;
     die();
 }
 

@@ -1,14 +1,7 @@
 <?php
 
 include './components/header.php';
-
-$servername = "localhost";
-$username = "pdf";
-$password = "7388139606";
-$dbname = "pdf";
-
-// Create a connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+include './config.php';
 
 // SQL query to retrieve data
 $sql = "SELECT * FROM ledger";
@@ -50,7 +43,7 @@ $total_amount = $total_credit - $total_debit;
                         if ($result2->num_rows > 0) {
                             while ($row = $result2->fetch_assoc()) {
                         ?>
-                                <option>
+                                <option value="<?php echo $row["name"]; ?>">
                                     <?php echo $row["name"]; ?> = <?php echo $row["reference"]; ?>
                                 </option>
                         <?php

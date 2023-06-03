@@ -1,14 +1,7 @@
 <?php
 
 include './components/header.php';
-
-$servername = "localhost";
-$username = "pdf";
-$password = "7388139606";
-$dbname = "pdf";
-
-// Create a connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+include './config.php';
 
 //Select customer table if exists
 $sql = "SELECT * FROM customer";
@@ -39,7 +32,7 @@ $result = $conn->query($sql);
 
             </div>
             <button class="w-[150px] text-black btn-sm border-white-200 shadow h-10 pl-2 pr-2 btn btn-primary rounded btn-success btn-active" type="submit">Addittion</button>
-            <div class="w-[150px] text-black btn-sm border-white-200 shadow h-10 pl-2 pr-2 btn btn-primary rounded btn-active" value="update" id="update">Modification</div>
+            <div class="w-[150px] text-black btn-sm border-white-200 shadow h-10 pl-2 pr-2 btn btn-primary rounded btn-active" value="update" id="c_update">Modification</div>
             <!-- <div class="w-[150px] text-black btn-sm border-white-200 shadow h-10 pl-2 pr-2 btn btn-secondary rounded btn-active" value="delete">Delete</div> -->
         </form>
         <div class="box-content h-[40vh] w-90 border-2 border-gray-100 bg-gray-100 overflow-y-scroll mt-5">
